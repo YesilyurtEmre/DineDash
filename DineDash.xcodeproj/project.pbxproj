@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6F127A0E2C049DB4003C8343 /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F127A0D2C049DB4003C8343 /* ProductCell.swift */; };
+		6F127A162C04D499003C8343 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F127A152C04D499003C8343 /* Product.swift */; };
+		6F127A1A2C07B0EE003C8343 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F127A192C07B0EE003C8343 /* HomeViewModel.swift */; };
 		6F5C21672C0361FE00928B40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C21662C0361FE00928B40 /* AppDelegate.swift */; };
 		6F5C21692C0361FE00928B40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5C21682C0361FE00928B40 /* SceneDelegate.swift */; };
 		6F5C216E2C0361FE00928B40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5C216C2C0361FE00928B40 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6F127A0D2C049DB4003C8343 /* ProductCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCell.swift; sourceTree = "<group>"; };
+		6F127A152C04D499003C8343 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
+		6F127A192C07B0EE003C8343 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6F5C21632C0361FE00928B40 /* DineDash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DineDash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F5C21662C0361FE00928B40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6F5C21682C0361FE00928B40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,54 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6F127A112C04D26D003C8343 /* ProductList */ = {
+			isa = PBXGroup;
+			children = (
+				6F127A122C04D27B003C8343 /* View */,
+			);
+			path = ProductList;
+			sourceTree = "<group>";
+		};
+		6F127A122C04D27B003C8343 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6F127A132C04D46E003C8343 /* Product */ = {
+			isa = PBXGroup;
+			children = (
+				6F127A172C04D7FB003C8343 /* View */,
+				6F127A142C04D483003C8343 /* Model */,
+			);
+			path = Product;
+			sourceTree = "<group>";
+		};
+		6F127A142C04D483003C8343 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6F127A152C04D499003C8343 /* Product.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6F127A172C04D7FB003C8343 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6F127A0D2C049DB4003C8343 /* ProductCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6F127A182C07B0D5003C8343 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6F127A192C07B0EE003C8343 /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		6F5C215A2C0361FE00928B40 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +130,8 @@
 		6F5C217E2C036D4F00928B40 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				6F127A132C04D46E003C8343 /* Product */,
+				6F127A112C04D26D003C8343 /* ProductList */,
 				6F5C21812C036D7400928B40 /* Cart */,
 				6F5C21802C036D6900928B40 /* Favorites */,
 				6F5C217F2C036D5D00928B40 /* Home */,
@@ -86,6 +142,7 @@
 		6F5C217F2C036D5D00928B40 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6F127A182C07B0D5003C8343 /* ViewModel */,
 				6F5C21832C036F4F00928B40 /* View */,
 			);
 			path = Home;
@@ -221,8 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5C218C2C03765E00928B40 /* FavoritesVC.swift in Sources */,
+				6F127A162C04D499003C8343 /* Product.swift in Sources */,
 				6F5C21872C036F9700928B40 /* HomeVC.swift in Sources */,
+				6F127A1A2C07B0EE003C8343 /* HomeViewModel.swift in Sources */,
 				6F5C21672C0361FE00928B40 /* AppDelegate.swift in Sources */,
+				6F127A0E2C049DB4003C8343 /* ProductCell.swift in Sources */,
 				6F5C21912C0376B300928B40 /* CartVC.swift in Sources */,
 				6F5C21692C0361FE00928B40 /* SceneDelegate.swift in Sources */,
 			);
