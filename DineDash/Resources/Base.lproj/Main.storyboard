@@ -10,12 +10,15 @@
         <!--Tab Bar Controller-->
         <scene sceneID="Fyx-0K-dlC">
             <objects>
-                <tabBarController id="Y0K-X9-3Gt" sceneMemberID="viewController">
+                <tabBarController hidesBottomBarWhenPushed="YES" id="Y0K-X9-3Gt" sceneMemberID="viewController">
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
+                    <navigationItem key="navigationItem" id="Q2u-fF-UaJ"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AhR-GY-IPW">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" name="AppColor"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="selectedImageTintColor" name="AppColor"/>
                     </tabBar>
                     <connections>
@@ -62,7 +65,7 @@
     </scenes>
     <resources>
         <namedColor name="AppColor">
-            <color red="0.94901960784313721" green="0.52941176470588236" blue="0.019607843137254902" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94900000095367432" green="0.52899998426437378" blue="0.019999999552965164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

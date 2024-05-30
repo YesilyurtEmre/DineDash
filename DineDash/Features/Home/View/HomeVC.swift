@@ -21,6 +21,8 @@ final class HomeVC: UIViewController {
         prepareCollectionView()
         prepareSearchBar()
         viewModel.fetchProducts()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+       
         
     }
     
@@ -81,6 +83,16 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.indexPath = indexPath
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "ProductDetailView", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(identifier: "ProductDetailVC") as? ProductDetailVC {
+            detailVC.hidesBottomBarWhenPushed = true
+            detailVC.selectedItem = [indexPath.item]
+            navigationController?.pushViewController(detailVC, animated: true)
+            
+        }
     }
 }
 

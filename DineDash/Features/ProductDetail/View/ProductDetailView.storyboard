@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Product DetailVC-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ProductDetailVC" id="Y6W-OH-hqX" customClass="ProductDetailVC" customModule="DineDash" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="IkZ-vO-5U3">
+                                <rect key="frame" x="20" y="80" width="374" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3R-u0-Gek">
+                                        <rect key="frame" x="0.0" y="0.0" width="43.5" height="34"/>
+                                        <color key="tintColor" name="AppColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="multiply" catalog="system"/>
+                                        <connections>
+                                            <action selector="closeButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="vvE-oR-cQI"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ürün Detayı" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S6T-hd-qIc">
+                                        <rect key="frame" x="127.5" y="0.0" width="108.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <color key="textColor" name="AppColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKA-kJ-KbV">
+                                        <rect key="frame" x="320" y="0.0" width="54" height="34"/>
+                                        <color key="tintColor" name="AppColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="heart" catalog="system"/>
+                                        <connections>
+                                            <action selector="favButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZGJ-xA-K8R"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baklava" translatesAutoresizingMaskIntoConstraints="NO" id="O7x-n7-H32">
+                                <rect key="frame" x="72" y="194" width="270" height="228"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₺10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9Q-6K-5Dz">
+                                <rect key="frame" x="176" y="438" width="62" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <color key="textColor" name="AppColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Baklava" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPf-dq-AMe">
+                                <rect key="frame" x="145" y="512" width="124" height="42"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <color key="textColor" name="AppColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="52l-3q-Rrk">
+                                <rect key="frame" x="60" y="594" width="94" height="32"/>
+                                <connections>
+                                    <action selector="stepperChange:" destination="Y6W-OH-hqX" eventType="valueChanged" id="UhM-bi-KV2"/>
+                                </connections>
+                            </stepper>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vyp-W1-yct">
+                                <rect key="frame" x="292" y="594" width="62" height="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                                <color key="textColor" name="AppColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="t7a-EL-RDz">
+                                <rect key="frame" x="8" y="682" width="398" height="42"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V8P-5j-9k9">
+                                        <rect key="frame" x="0.0" y="0.0" width="112.5" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="30-40 dk">
+                                            <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Uy-5M-wun">
+                                        <rect key="frame" x="142.5" y="0.0" width="113" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Ücretsiz Teslimat">
+                                            <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XrJ-jt-7ib">
+                                        <rect key="frame" x="285.5" y="0.0" width="112.5" height="42"/>
+                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="İndirim: %15">
+                                            <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                        </buttonConfiguration>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₺100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zmG-KG-IHM">
+                                <rect key="frame" x="20" y="809" width="85" height="43"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="35"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8c3-Mc-cRk">
+                                <rect key="frame" x="229.5" y="809" width="164.5" height="43"/>
+                                <color key="backgroundColor" name="AppColor"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Sepete Ekle">
+                                    <fontDescription key="titleFontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="25"/>
+                                </buttonConfiguration>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="layer.cornerRadius" value="15"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="addToCartButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="h4f-Bd-jx1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="8c3-Mc-cRk" secondAttribute="trailing" constant="20" id="6oV-MG-Wjb"/>
+                            <constraint firstItem="t7a-EL-RDz" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="GVf-yR-QOk"/>
+                            <constraint firstItem="Vyp-W1-yct" firstAttribute="top" secondItem="QPf-dq-AMe" secondAttribute="bottom" constant="40" id="I8v-4U-GpF"/>
+                            <constraint firstItem="8c3-Mc-cRk" firstAttribute="top" secondItem="zmG-KG-IHM" secondAttribute="top" id="KW4-mj-v40"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="O7x-n7-H32" secondAttribute="bottom" constant="440" id="LBl-P7-HxC"/>
+                            <constraint firstItem="t7a-EL-RDz" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" constant="8" id="LnD-dU-0R6"/>
+                            <constraint firstItem="O7x-n7-H32" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="72" id="M9I-j5-wGL"/>
+                            <constraint firstItem="C9Q-6K-5Dz" firstAttribute="top" secondItem="O7x-n7-H32" secondAttribute="bottom" constant="16" id="MEB-La-Kik"/>
+                            <constraint firstItem="QPf-dq-AMe" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Po6-0I-XOW"/>
+                            <constraint firstItem="QPf-dq-AMe" firstAttribute="top" secondItem="C9Q-6K-5Dz" secondAttribute="bottom" constant="32" id="R1S-ry-Rrb"/>
+                            <constraint firstItem="IkZ-vO-5U3" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="32" id="VYn-du-Srj"/>
+                            <constraint firstItem="zmG-KG-IHM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="VfN-5K-XFL"/>
+                            <constraint firstItem="O7x-n7-H32" firstAttribute="top" secondItem="IkZ-vO-5U3" secondAttribute="bottom" constant="80" id="ZK5-sc-mJ0"/>
+                            <constraint firstItem="IkZ-vO-5U3" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="dyn-H2-dt8"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Vyp-W1-yct" secondAttribute="trailing" constant="60" id="eCd-9W-bWl"/>
+                            <constraint firstItem="52l-3q-Rrk" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="60" id="f29-2c-6Mo"/>
+                            <constraint firstItem="8c3-Mc-cRk" firstAttribute="trailing" secondItem="IkZ-vO-5U3" secondAttribute="trailing" id="faK-xN-jbE"/>
+                            <constraint firstItem="52l-3q-Rrk" firstAttribute="top" secondItem="QPf-dq-AMe" secondAttribute="bottom" constant="40" id="gXJ-TH-OIG"/>
+                            <constraint firstItem="t7a-EL-RDz" firstAttribute="top" secondItem="52l-3q-Rrk" secondAttribute="bottom" constant="56" id="h2k-9k-e5F"/>
+                            <constraint firstItem="zmG-KG-IHM" firstAttribute="top" secondItem="t7a-EL-RDz" secondAttribute="bottom" constant="85" id="hYx-ll-yRp"/>
+                            <constraint firstItem="C9Q-6K-5Dz" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="tng-RW-LMj"/>
+                            <constraint firstItem="O7x-n7-H32" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="v0M-29-JMb"/>
+                            <constraint firstItem="8c3-Mc-cRk" firstAttribute="centerY" secondItem="zmG-KG-IHM" secondAttribute="centerY" id="vC3-cN-f2A"/>
+                            <constraint firstAttribute="trailing" secondItem="t7a-EL-RDz" secondAttribute="trailing" constant="8" id="vR8-Ki-rnK"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailImageView" destination="O7x-n7-H32" id="QD4-Gr-N1l"/>
+                        <outlet property="detailNameLabel" destination="QPf-dq-AMe" id="BOg-h7-lTA"/>
+                        <outlet property="detailPriceLabel" destination="C9Q-6K-5Dz" id="cpv-Vk-eYL"/>
+                        <outlet property="detailTotalPriceLabel" destination="zmG-KG-IHM" id="jPn-5D-PnI"/>
+                        <outlet property="productNumberLabel" destination="Vyp-W1-yct" id="T6S-NB-YBS"/>
+                        <outlet property="stepper" destination="52l-3q-Rrk" id="x1S-kb-A4A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="121.73913043478262" y="-2.0089285714285712"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="baklava" width="772" height="515"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="multiply" catalog="system" width="128" height="111"/>
+        <namedColor name="AppColor">
+            <color red="0.94900000095367432" green="0.52899998426437378" blue="0.019999999552965164" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
