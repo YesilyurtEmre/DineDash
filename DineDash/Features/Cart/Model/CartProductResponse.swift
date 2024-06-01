@@ -41,8 +41,5 @@ struct CartProductMockData {
         yemekSiparisAdet: 4,
         kullaniciAdi: "Emre"
     )
-    static let products = [
-        sampleProductAyran,
-        sampleProductKola
-    ]
+    static let products = [sampleProductAyran,sampleProductKola]
 }

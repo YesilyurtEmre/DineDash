@@ -12,10 +12,29 @@ final class CartVC: UIViewController {
     @IBOutlet weak var cartTotalPrice: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    let viewModel = CartViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkCartItems()
         configureTotalPrice()
         configureTableView()
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+    }
+    
+    private func checkCartItems() {
+        if viewModel.cartItems.isEmpty {
+            showEmptyCart()
+        }
+    }
+    
+    
+    func showEmptyCart() {
+        let storyboard = UIStoryboard(name: "EmptyCartView", bundle: nil)
+        if let emptyCartVC = storyboard.instantiateViewController(withIdentifier: "EmptyCartVC") as? EmptyCartVC {
+            navigationController?.pushViewController(emptyCartVC, animated: true)
+        }
     }
     
     private func configureTotalPrice() {
