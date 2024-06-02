@@ -16,7 +16,7 @@ final class EmptyCartVC: UIViewController {
 
     @IBAction func startShoppingButtonTapped(_ sender: Any) {
         if let tabBarController = self.tabBarController {
-            tabBarController.selectedIndex = 0 // Home tab indexini belirtin, genelde ilk tab 0 indeksindedir
+            tabBarController.selectedIndex = 0
         }
     }
 }

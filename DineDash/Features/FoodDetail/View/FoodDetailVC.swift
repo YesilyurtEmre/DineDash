@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ProductDetailVC: UIViewController {
+final class FoodDetailVC: UIViewController {
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var detailTotalPriceLabel: UILabel!

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HomeVC: UIViewController {
+final class HomeVC: BaseVC {
  
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var productCollectionView: UICollectionView!
@@ -20,10 +20,9 @@ final class HomeVC: UIViewController {
         super.viewDidLoad()
         prepareCollectionView()
         prepareSearchBar()
-        viewModel.fetchProducts()
         navigationController?.setNavigationBarHidden(true, animated: true)
-       
-        
+        viewModel.delegate = self
+        indicator.startAnimating()
     }
     
     private func prepareCollectionView() {
@@ -54,6 +53,19 @@ final class HomeVC: UIViewController {
     }
 }
 
+extension HomeVC: HomeViewModelDelegate {
+    func foodsFailed(error: Error) {
+        showErrorAlert(message: error.localizedDescription) { [weak self] in
+            self?.indicator.stopAnimating()
+        }
+    }
+    
+    func foodsLoaded() {
+        productCollectionView.reloadData()
+        indicator.stopAnimating()
+    }
+}
+
 extension HomeVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         viewModel.searchProduct(searchText: searchText)
@@ -68,13 +80,12 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as! ProductCell
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "productCell", for: indexPath) as? ProductCell, let product = viewModel.getProduct(at: indexPath.row) else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FoodCell", for: indexPath) as? FoodCell, let food = viewModel.getProduct(at: indexPath.row) else { return UICollectionViewCell() }
         
-        cell.productImgView.image = UIImage(named: product.image ?? "")
-        cell.nameLabel.text =  product.name
-        cell.priceLabel.text = "\(product.price ?? 0) ₺"
+        cell.productImgView.image = viewModel.foodImages[food.yemekId]
+        cell.nameLabel.text =  food.yemekAdi
+        cell.priceLabel.text = "\(food.yemekFiyat) ₺"
         
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.3
@@ -86,8 +97,8 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "ProductDetailView", bundle: nil)
-        if let detailVC = storyboard.instantiateViewController(identifier: "ProductDetailVC") as? ProductDetailVC {
+        let storyboard = UIStoryboard(name: "FoodDetailView", bundle: nil)
+        if let detailVC = storyboard.instantiateViewController(identifier: "FoodDetailVC") as? FoodDetailVC {
             detailVC.hidesBottomBarWhenPushed = true
             detailVC.selectedItem = [indexPath.item]
             navigationController?.pushViewController(detailVC, animated: true)
