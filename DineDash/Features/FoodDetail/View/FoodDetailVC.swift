@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FoodDetailVC: UIViewController {
+final class FoodDetailVC: BaseVC {
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var detailTotalPriceLabel: UILabel!
@@ -18,21 +18,34 @@ final class FoodDetailVC: UIViewController {
     
     let pricePerProduct = 10.0
     
-    var selectedItem: Any?
+    var selectedFood: Food?
     
+    var viewModel: FoodDetailViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let food = selectedFood else { return }
+        configureUI(food: food)
         updateProductNumberLabel()
         updateDetailTotalPriceLabel()
         stepper.addTarget(self, action: #selector(stepperValueChanged), for: .valueChanged)
-        
+        viewModel = FoodDetailViewModel(foodImage: food.yemekResimAdi)
+        viewModel?.delegate = self
+        indicator.startAnimating()
+    }
+    
+    private func configureUI(food: Food) {
+        //guard let selectedFood else {return}
+        productNumberLabel.text = "0"
+        detailNameLabel.text = food.yemekAdi
+        detailPriceLabel.text = food.yemekFiyat + "₺"
+        detailImageView.image = UIImage(named: food.yemekResimAdi)
     }
     
     func updateDetailTotalPriceLabel() {
         let totalPrice = pricePerProduct * stepper.value
         
-      detailTotalPriceLabel.text = String("₺\(Int(totalPrice))")
+      detailTotalPriceLabel.text = String("\(Int(totalPrice)) ₺")
     }
     
     @objc func stepperValueChanged() {
@@ -73,4 +86,18 @@ final class FoodDetailVC: UIViewController {
     @IBAction func addToCartButtonTapped(_ sender: Any) {
         
     }
+}
+
+extension FoodDetailVC: FoodDetailViewModelDelegate {
+    func imageLoaded() {
+        detailImageView.image = viewModel?.foodDetailImage
+        indicator.stopAnimating()
+    }
+    
+    func imageLoadFailed(error: Error) {
+        showErrorAlert(message: error.localizedDescription) { [weak self] in
+            self?.indicator.stopAnimating()
+        }
+    }
+    
 }

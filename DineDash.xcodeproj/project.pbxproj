@@ -38,6 +38,7 @@
 		6FD248622C0BD0E2000C1FF7 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD248612C0BD0E1000C1FF7 /* APIRequest.swift */; };
 		6FD248662C0BE0D4000C1FF7 /* BaseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD248652C0BE0D4000C1FF7 /* BaseVC.swift */; };
 		6FD248692C0BE146000C1FF7 /* SwiftAlertView in Frameworks */ = {isa = PBXBuildFile; productRef = 6FD248682C0BE146000C1FF7 /* SwiftAlertView */; };
+		6FD2486C2C0BF49B000C1FF7 /* FoodDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FD2486B2C0BF49B000C1FF7 /* FoodDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +70,7 @@
 		6FD2485D2C0BB80D000C1FF7 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		6FD248612C0BD0E1000C1FF7 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		6FD248652C0BE0D4000C1FF7 /* BaseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVC.swift; sourceTree = "<group>"; };
+		6FD2486B2C0BF49B000C1FF7 /* FoodDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		6F127A1B2C07BCBA003C8343 /* FoodDetail */ = {
 			isa = PBXGroup;
 			children = (
+				6FD2486A2C0BF36E000C1FF7 /* ViewModel */,
 				6F127A1C2C07BCCA003C8343 /* View */,
 			);
 			path = FoodDetail;
@@ -305,6 +308,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6FD2486A2C0BF36E000C1FF7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				6FD2486B2C0BF49B000C1FF7 /* FoodDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,6 +409,7 @@
 				6F5C218C2C03765E00928B40 /* FavoritesVC.swift in Sources */,
 				6FD248662C0BE0D4000C1FF7 /* BaseVC.swift in Sources */,
 				6F16F45B2C0B50C300DF783C /* CartCell.swift in Sources */,
+				6FD2486C2C0BF49B000C1FF7 /* FoodDetailViewModel.swift in Sources */,
 				6F16F4692C0B6C1A00DF783C /* CartViewModel.swift in Sources */,
 				6F16F4612C0B59A800DF783C /* CartProductResponse.swift in Sources */,
 				6FD2485E2C0BB80D000C1FF7 /* Endpoints.swift in Sources */,

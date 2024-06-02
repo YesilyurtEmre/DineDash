@@ -100,7 +100,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let storyboard = UIStoryboard(name: "FoodDetailView", bundle: nil)
         if let detailVC = storyboard.instantiateViewController(identifier: "FoodDetailVC") as? FoodDetailVC {
             detailVC.hidesBottomBarWhenPushed = true
-            detailVC.selectedItem = [indexPath.item]
+            detailVC.selectedFood = viewModel.filteredFoods?[indexPath.item]
             navigationController?.pushViewController(detailVC, animated: true)
             
         }

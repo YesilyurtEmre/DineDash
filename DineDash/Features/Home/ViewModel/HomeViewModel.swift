@@ -21,7 +21,7 @@ protocol HomeViewModelDelegate: AnyObject {
 final class HomeViewModel {
     weak var delegate: HomeViewModelDelegate?
     private var foods: [Food]? = MockData.foods
-    private var filteredFoods: [Food]?
+     var filteredFoods: [Food]?
      var foodImages: [String: UIImage] = [:]
     
     init() {
