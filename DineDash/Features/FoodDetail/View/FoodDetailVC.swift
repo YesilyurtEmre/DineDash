@@ -11,12 +11,10 @@ final class FoodDetailVC: BaseVC {
     
     @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var detailTotalPriceLabel: UILabel!
-    @IBOutlet weak var productNumberLabel: UILabel!
+    @IBOutlet weak var orderCountLabel: UILabel!
     @IBOutlet weak var detailNameLabel: UILabel!
     @IBOutlet weak var detailPriceLabel: UILabel!
     @IBOutlet weak var detailImageView: UIImageView!
-    
-    let pricePerProduct = 10.0
     
     var selectedFood: Food?
     
@@ -36,16 +34,19 @@ final class FoodDetailVC: BaseVC {
     
     private func configureUI(food: Food) {
         //guard let selectedFood else {return}
-        productNumberLabel.text = "0"
+        orderCountLabel.text = "0"
         detailNameLabel.text = food.yemekAdi
         detailPriceLabel.text = food.yemekFiyat + "₺"
         detailImageView.image = UIImage(named: food.yemekResimAdi)
     }
     
     func updateDetailTotalPriceLabel() {
-        let totalPrice = pricePerProduct * stepper.value
+        guard let selectedFood = selectedFood else {
+            return
+        }
+        let totalPrice = (Double(selectedFood.yemekFiyat) ?? 0) * (Double(orderCountLabel.text ?? "0") ?? 0)
         
-      detailTotalPriceLabel.text = String("\(Int(totalPrice)) ₺")
+        detailTotalPriceLabel.text = String("\(Int(totalPrice)) ₺")
     }
     
     @objc func stepperValueChanged() {
@@ -54,18 +55,18 @@ final class FoodDetailVC: BaseVC {
     }
     
     func updateProductNumberLabel() {
-        productNumberLabel.text = "Ürün Adet: \(Int(stepper.value))"
+        orderCountLabel.text = "\(Int(stepper.value))"
     }
     
     @IBAction func stepperChange(_ sender: UIStepper) {
         let currentValue = Int(sender.value)
-        productNumberLabel.text = "Ürün Adet: \(currentValue)"
+        orderCountLabel.text = "\(currentValue)"
         updateDetailTotalPriceLabel()
         
         if currentValue == Int(stepper.maximumValue) {
-                    showAlert()
-                }
-
+            showAlert()
+        }
+        
     }
     
     func showAlert() {
@@ -84,7 +85,22 @@ final class FoodDetailVC: BaseVC {
     }
     
     @IBAction func addToCartButtonTapped(_ sender: Any) {
-        
+        guard let selectedFood else { return }
+        if Int(orderCountLabel.text ?? "0") ?? 0 > 0 {
+            indicator.startAnimating()
+            let food = CartFoodRequest(
+                yemekAdi: selectedFood.yemekAdi,
+                yemekResimAdi: selectedFood.yemekResimAdi,
+                yemekFiyat: selectedFood.yemekFiyat,
+                yemekSiparisAdet: orderCountLabel.text ?? "",
+                kullaniciAdi: "emre_yesilyurt"
+            )
+            viewModel?.addToCart(food: food)
+        } else {
+            showErrorAlert(message: "Sepete en az bir tane ürün eklemelisiniz!") {
+                
+            }
+        }
     }
 }
 
@@ -95,6 +111,19 @@ extension FoodDetailVC: FoodDetailViewModelDelegate {
     }
     
     func imageLoadFailed(error: Error) {
+        showErrorAlert(message: error.localizedDescription) { [weak self] in
+            self?.indicator.stopAnimating()
+        }
+    }
+    
+    func foodsAdded() {
+        showSuccessAlert(title: "Tebrikler", message: "Ürün sepete eklendi") { [weak self] in
+            self?.indicator.stopAnimating()
+            self?.dismiss(animated: true)
+        }
+    }
+    
+    func foodsAddedFailed(error: Error) {
         showErrorAlert(message: error.localizedDescription) { [weak self] in
             self?.indicator.stopAnimating()
         }

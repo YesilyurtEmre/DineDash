@@ -12,6 +12,7 @@ enum EndPoints {
     
     case getFoodList
     case getFoodImages
+    case addFoodToCart
     
     var stringValue: String {
         switch self {
@@ -19,6 +20,8 @@ enum EndPoints {
             return EndPoints.BASE_URL + "/tumYemekleriGetir.php"
         case .getFoodImages:
             return EndPoints.BASE_URL + "/resimler"
+        case .addFoodToCart:
+            return EndPoints.BASE_URL + "/sepeteYemekEkle.php"
         }
     }
     

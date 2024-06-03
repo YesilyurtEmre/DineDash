@@ -29,7 +29,13 @@ class BaseVC: UIViewController {
     }
     
     func showErrorAlert(message: String, completion: @escaping () -> Void ) {
-        SwiftAlertView.show(title: "Error", message: message, buttonTitles: ["Ok"]).onButtonClicked { _, _ in
+        SwiftAlertView.show(title: "Hata", message: message, buttonTitles: ["Ok"]).onButtonClicked { _, _ in
+            completion()
+        }
+    }
+    
+    func showSuccessAlert(title: String, message: String, completion: @escaping () -> Void) {
+        SwiftAlertView.show(title: title, message: message, buttonTitles: ["Ok"]).onButtonClicked { _, _ in
             completion()
         }
     }

@@ -1,5 +1,5 @@
 //
-//  CartProduct.swift
+//  CartFoodRequest.swift
 //  DineDash
 //
 //  Created by Emre Yeşilyurt on 1.06.2024.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct CartProductRequest: Encodable {
+struct CartFoodRequest: Encodable {
     let yemekAdi: String
     let yemekResimAdi: String
-    let yemekFiyat, yemekSiparisAdet: Int
+    let yemekFiyat, yemekSiparisAdet: String
     let kullaniciAdi: String
     
     enum CodingKeys: String, CodingKey {

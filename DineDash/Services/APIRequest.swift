@@ -13,7 +13,7 @@ final class APIRequest {
     
     private init() {}
     
-    func get<T: Decodable>(url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, completion: @escaping (Result<T, AFError>) -> Void) {
+    func get<T: Decodable>(url: String, parameters: Parameters? = nil , headers: HTTPHeaders? = nil, completion: @escaping (Result<T, AFError>) -> Void) {
         
         AF.request(url, method: .get, parameters: parameters, encoding: URLEncoding.default, headers: headers)
             .validate()
@@ -22,7 +22,7 @@ final class APIRequest {
             }
     }
     
-    func post<T: Decodable>(url: String, parameters: [String: Any]? = nil, headers: HTTPHeaders? = nil, completion: @escaping (Result<T, AFError>) -> Void) {
+    func post<T: Decodable>(url: String, parameters: Parameters? = nil, headers: HTTPHeaders? = nil, completion: @escaping (Result<T, AFError>) -> Void) {
         
         AF.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
             .validate()
