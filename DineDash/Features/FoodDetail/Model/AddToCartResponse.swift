@@ -9,6 +9,6 @@ import Foundation
 
 // MARK: - AddToCartResponse
 struct AddToCartResponse: Codable {
-    let success: Int
-    let message: String
+    let success: Int?
+    let message: String?
 }

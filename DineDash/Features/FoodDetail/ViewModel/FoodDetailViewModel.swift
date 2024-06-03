@@ -42,13 +42,15 @@ final class FoodDetailViewModel {
     }
     
     func addToCart(food: CartFoodRequest) {
-            let params: Parameters = [
-                "yemek_adi": food.yemekAdi,
-                "yemek_fiyat": food.yemekFiyat,
-                "yemek_resim_adi": food.yemekResimAdi,
-                "yemek_siparis_adet": food.yemekSiparisAdet,
-                "kullanici_adi": food.kullaniciAdi
-            ]
+//            let params: Parameters = [
+//                "yemek_adi": food.yemekAdi,
+//                "yemek_fiyat": food.yemekFiyat,
+//                "yemek_resim_adi": food.yemekResimAdi,
+//                "yemek_siparis_adet": food.yemekSiparisAdet,
+//                "kullanici_adi": food.kullaniciAdi
+//            ]
+        let params:Parameters = ["yemek_adi":food.yemekAdi,"yemek_fiyat":food.yemekFiyat,"yemek_resim_adi":food.yemekResimAdi, "yemek_siparis_adet":food.yemekSiparisAdet,"kullanici_adi":food.kullaniciAdi]
+        
             let urlString = EndPoints.addFoodToCart.stringValue
             APIRequest.shared.post(url: urlString, parameters: params) { [weak self] (result: Result<AddToCartResponse, AFError>) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

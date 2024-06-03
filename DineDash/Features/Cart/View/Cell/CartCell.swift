@@ -25,8 +25,8 @@ class CartCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(product: CartProductResponse) {
-        let totalProductPrice = product.yemekFiyat * product.yemekSiparisAdet
+    func configure(product: CartFood) {
+        let totalProductPrice = Double(product.yemekFiyat)! * Double(product.yemekSiparisAdet)!
         productImageView.image = UIImage(named: product.yemekResimAdi)
         productName.text = product.yemekAdi
         productPrice.text = "\(product.yemekFiyat)"

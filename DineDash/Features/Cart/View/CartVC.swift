@@ -7,24 +7,26 @@
 
 import UIKit
 
-final class CartVC: UIViewController {
+final class CartVC: BaseVC {
     
     @IBOutlet weak var cartTotalPrice: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
-    let viewModel = CartViewModel()
+    var viewModel: CartViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = CartViewModel()
         checkCartItems()
         configureTotalPrice()
         configureTableView()
         navigationController?.setNavigationBarHidden(true, animated: true)
+        viewModel?.delegate = self
         
     }
     
     private func checkCartItems() {
-        if viewModel.cartItems.isEmpty {
+        if ((viewModel?.cartItems.isEmpty) != nil) {
             showEmptyCart()
         }
     }
@@ -38,10 +40,10 @@ final class CartVC: UIViewController {
     }
     
     private func configureTotalPrice() {
-        let totalCost = CartProductMockData.products.reduce(0.0) { (result, product) in
-            result + Double((product.yemekFiyat * product.yemekSiparisAdet))
-        }
-        cartTotalPrice.text = "\(totalCost)"
+//        let totalCost = CartProductMockData.products.reduce(into: 0.0) { (result, product) in
+//            result + Double((product.yemekFiyat * product.yemekSiparisAdet))
+//        }
+//        cartTotalPrice.text = "\(totalCost)"
     }
     
     
@@ -72,6 +74,18 @@ extension CartVC: UITableViewDataSource {
         let model = CartProductMockData.products[indexPath.row]
         cell.configure(product: model)
         return cell
+    }
+    
+    
+}
+
+extension CartVC: CartViewModelDelegate {
+    func getFoodToCart() {
+        print("get Food Cart")
+    }
+    
+    func getFoodToCartFailed(error: Error) {
+        print("get food to cart failed")
     }
     
     
