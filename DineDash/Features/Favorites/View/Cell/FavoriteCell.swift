@@ -7,11 +7,21 @@
 
 import UIKit
 
+protocol FavoriteCellDelegate: AnyObject {
+    func didTapFavoriteButton(foodId: Int32)
+}
+
 class FavoriteCell: UITableViewCell {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var foodPriceLabel: UILabel!
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var foodImageView: UIImageView!
+    
+    var foodId: Int32?
+    var delegate: FavoriteCellDelegate?
+    //var foodDelegate: FoodCellDelegate?
+    var indexPath: IndexPath?
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +33,7 @@ class FavoriteCell: UITableViewCell {
     }
     
     @IBAction func favoriteButtonTapped(_ sender: UIButton) {
+        guard let foodId = foodId else { return }
+                delegate?.didTapFavoriteButton(foodId: foodId)
     }
 }

@@ -40,10 +40,7 @@ final class CartVC: BaseVC {
     }
     
     private func configureTotalPrice() {
-//        let totalCost = CartProductMockData.products.reduce(into: 0.0) { (result, product) in
-//            result + Double((product.yemekFiyat * product.yemekSiparisAdet))
-//        }
-//        cartTotalPrice.text = "\(totalCost)"
+
     }
     
     

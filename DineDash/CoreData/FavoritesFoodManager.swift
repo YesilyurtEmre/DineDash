@@ -5,55 +5,102 @@
 //  Created by Emre Yeşilyurt on 4.06.2024.
 //
 
-import UIKit
 import CoreData
+import UIKit
 
-final class FavoritesFoodManager: CoreDataProtocol {
+protocol CoreDataManagerProtocol {
+    func getFoods() -> [FavoriteFoods]
+    func saveFood(foodId: Int32, name: String, price: String, image: Data)
+    func deleteFood(foodId: Int32)
+    func isFavorite(foodId: Int32) -> Bool
+    func getFood(by foodId: Int) -> FavoriteFoods?
+}
+
+final class FavoritesFoodManager: CoreDataManagerProtocol {
     static let shared = FavoritesFoodManager()
-    typealias T = FavoriteFoods
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
     private init() {}
     
-    func saveData(data: FavoriteFoods, completion: @escaping (Bool, CoreDataError) -> ()) {
-        do {
-            try self.context.save()
-            completion(true, .noError)
-        } catch {
-            completion(false, .savingError)
-        }
+    private var context: NSManagedObjectContext {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        return appDelegate.persistentContainer.viewContext
     }
     
-    func fetchData(completion: @escaping ([FavoriteFoods]?, CoreDataError) -> ()) {
-        let fetchRequest = NSFetchRequest<FavoriteFoods>(entityName: "FavoriteFoods")
+    func getFoods() -> [FavoriteFoods] {
+        let fetchRequest: NSFetchRequest<FavoriteFoods> = FavoriteFoods.fetchRequest()
         let sortByCreatedAt = NSSortDescriptor(key: "createdAt", ascending: false)
         fetchRequest.sortDescriptors = [sortByCreatedAt]
         do {
-            let foods = try context.fetch(fetchRequest)
-            if foods.count > 0 {
-                completion(foods, .noError)
-            } else {
-                completion(nil, .dataError)
-            }
+            return try context.fetch(fetchRequest)
         } catch {
-            completion(nil, .fetchingError)
+            print("Failed to fetch foods: \(error)")
+            return []
         }
     }
     
-    func deleteData(id: Int, completion: @escaping (Bool, CoreDataError) -> ()) {
-        let fetchRequest = NSFetchRequest<FavoriteFoods>(entityName: "FavoriteFoods")
-        fetchRequest.predicate = NSPredicate(format: "foodId = %@", String(id))
+    func saveFood(foodId: Int32, name: String, price: String, image: Data) {
+        let entity = FavoriteFoods(context: context)
+        entity.foodId = foodId
+        entity.name = name
+        entity.price = price
+        entity.image = image
+        entity.createdAt = Date()
+        
         do {
-            if let result = try context.fetch(fetchRequest).first {
-                context.delete(result)
-                try context.save()
-                completion(true, .noError)
-            }
+            try context.save()
         } catch {
-            completion(false, .removingError)
+            print("Failed to save food: \(error)")
         }
     }
     
+    func deleteFood(foodId: Int32) {
+        let request: NSFetchRequest<FavoriteFoods> = FavoriteFoods.fetchRequest()
+        request.predicate = NSPredicate(format: "foodId == %d", foodId)
+        
+        do {
+            let foods = try context.fetch(request)
+            for food in foods {
+                context.delete(food)
+            }
+            try context.save()
+        } catch {
+            print("Failed to delete food: \(error)")
+        }
+    }
+    
+    func isFavorite(foodId: Int32) -> Bool {
+        let request: NSFetchRequest<FavoriteFoods> = FavoriteFoods.fetchRequest()
+        request.predicate = NSPredicate(format: "foodId == %d", foodId)
+        
+        do {
+            let count = try context.count(for: request)
+            return count > 0
+        } catch {
+            print("Failed to check if food is favorite: \(error)")
+            return false
+        }
+    }
+    
+    
+    func getFood(by foodId: Int) -> FavoriteFoods? {
+        let fetchRequest: NSFetchRequest<FavoriteFoods> = FavoriteFoods.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "foodId == %d", foodId)
+        do {
+            return try persistentContainer.viewContext.fetch(fetchRequest).first
+        } catch {
+            print("Failed to fetch food: \(error)")
+            return nil
+        }
+    }
+    
+    lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "FoodModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
     
 }
 

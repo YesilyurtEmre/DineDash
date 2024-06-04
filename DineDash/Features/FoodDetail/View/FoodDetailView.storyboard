@@ -24,7 +24,10 @@
                                         <rect key="frame" x="0.0" y="0.0" width="43.5" height="34"/>
                                         <color key="tintColor" name="AppColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" image="multiply" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="multiply" catalog="system">
+                                            <color key="baseForegroundColor" name="AppColor"/>
+                                            <color key="baseBackgroundColor" name="AppColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="closeButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="vvE-oR-cQI"/>
                                         </connections>
@@ -39,7 +42,10 @@
                                         <rect key="frame" x="320" y="0.0" width="54" height="34"/>
                                         <color key="tintColor" name="AppColor"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="tinted" image="heart" catalog="system"/>
+                                        <buttonConfiguration key="configuration" style="tinted" image="heart" catalog="system">
+                                            <color key="baseForegroundColor" name="AppColor"/>
+                                            <color key="baseBackgroundColor" name="AppColor"/>
+                                        </buttonConfiguration>
                                         <connections>
                                             <action selector="favButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ZGJ-xA-K8R"/>
                                         </connections>

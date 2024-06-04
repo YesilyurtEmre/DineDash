@@ -11,7 +11,6 @@ import AlamofireImage
 
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? {get set}
-    func saveFood(food: FavoriteFoods, completion: @escaping (Bool, String?) -> ())
     func foodIsFavorite(index: Int) -> Bool
 }
 
@@ -28,13 +27,18 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     init() {
         fetchFoods()
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesUpdated), name: NSNotification.Name("favoritesUpdated"), object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func fetchFoods() {
         
         let urlString = EndPoints.getFoodList.stringValue
         APIRequest.shared.get(url: urlString) { [weak self] (result: Result<FoodsResponse, AFError>) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 guard let self else {return}
                 switch result {
                 case .success(let response):
@@ -71,18 +75,6 @@ final class HomeViewModel: HomeViewModelProtocol {
         }
     }
     
-    func saveFood(food: FavoriteFoods, completion: @escaping (Bool, String?) -> ()) {
-        FavoritesFoodManager.shared.saveData(data: food) { [weak self] isSuccess, saveError in
-            guard let self = self else { return }
-            if isSuccess {
-                self.delegate?.foodsLoaded()
-                completion(true, nil)
-            } else {
-                completion(false, saveError.rawValue)
-            }
-        }
-    }
-    
     func getProductCount() -> Int {
         filteredFoods?.count ?? 0
     }
@@ -107,5 +99,9 @@ final class HomeViewModel: HomeViewModelProtocol {
     
     func foodIsFavorite(index: Int) -> Bool {
         filteredFoods?[index].isFavorite ?? false
+    }
+    
+    @objc private func favoritesUpdated() {
+        delegate?.foodsLoaded()
     }
 }

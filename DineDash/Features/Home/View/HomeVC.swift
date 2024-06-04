@@ -7,15 +7,18 @@
 
 import UIKit
 
+protocol HomeViewControllerDelegate: AnyObject {
+    func didUpdateFavorites()
+}
+
 final class HomeVC: BaseVC {
- 
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var productCollectionView: UICollectionView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     private var viewModel = HomeViewModel()
-    private var favoriteFoodListViewModel = FavoriteFoodListViewModel()
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +27,25 @@ final class HomeVC: BaseVC {
         navigationController?.setNavigationBarHidden(true, animated: true)
         viewModel.delegate = self
         indicator.startAnimating()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleFavoriteButtonTapped(notification:)), name: Notification.Name("FavoriteButtonTapped"), object: nil)
+    }
+    
+    @objc private func handleFavoriteButtonTapped(notification: Notification) {
+        guard let indexPath = notification.object as? IndexPath,
+              let food = viewModel.getProduct(at: indexPath.row) else { return }
+        
+        let isFavorite = FavoritesFoodManager.shared.isFavorite(foodId: Int32(food.yemekId) ?? 0)
+        
+        if isFavorite {
+            FavoritesFoodManager.shared.deleteFood(foodId: Int32(food.yemekId) ?? 0)
+        } else {
+            let foodImage = viewModel.foodImages[food.yemekId]?.pngData()
+            FavoritesFoodManager.shared.saveFood(foodId: Int32(food.yemekId) ?? 0, name: food.yemekAdi, price: food.yemekFiyat, image: foodImage ?? Data())
+        }
+        
+        if let cell = productCollectionView.cellForItem(at: indexPath) as? FoodCell {
+            cell.isFavorite = !isFavorite
+        }
     }
     
     private func prepareCollectionView() {
@@ -52,6 +74,10 @@ final class HomeVC: BaseVC {
         searchBar.setBackgroundImage(UIImage.init(), for: UIBarPosition.any, barMetrics: UIBarMetrics.default)
         searchBar.placeholder = "Ara"
     }
+    
+    @objc private func reloadData() {
+            productCollectionView.reloadData()
+        }
 }
 
 extension HomeVC: HomeViewModelDelegate {
@@ -93,11 +119,13 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.layer.cornerRadius = 10
         
         cell.indexPath = indexPath
+        cell.delegate = self
+        cell.isFavorite = FavoritesFoodManager.shared.isFavorite(foodId: Int32(food.yemekId) ?? 0)
         cell.foodId = Int(food.yemekId)
         
         return cell
     }
-    
+        
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "FoodDetailView", bundle: nil)
         if let detailVC = storyboard.instantiateViewController(identifier: "FoodDetailVC") as? FoodDetailVC {
@@ -107,6 +135,14 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
             
         }
     }
+}
+
+extension HomeVC: FoodCellDelegate {
+    func didTapFavoriteButton(foodId: Int32) {
+        productCollectionView.reloadData()
+    }
+    
+    
 }
 
 
