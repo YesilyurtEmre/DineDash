@@ -15,6 +15,7 @@ final class FoodDetailVC: BaseVC {
     @IBOutlet weak var detailNameLabel: UILabel!
     @IBOutlet weak var detailPriceLabel: UILabel!
     @IBOutlet weak var detailImageView: UIImageView!
+    @IBOutlet weak var favButton: UIButton!
     
     var selectedFood: Food?
     
@@ -38,6 +39,8 @@ final class FoodDetailVC: BaseVC {
         detailNameLabel.text = food.yemekAdi
         detailPriceLabel.text = food.yemekFiyat + "₺"
         detailImageView.image = UIImage(named: food.yemekResimAdi)
+        let imageName = food.isFavorite ? "heart.fill" : "heart"
+        favButton.setImage(UIImage(systemName: imageName), for: .normal)
     }
     
     func updateDetailTotalPriceLabel() {

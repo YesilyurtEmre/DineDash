@@ -27,6 +27,7 @@ class FoodCell: UICollectionViewCell {
     }
     var foodId: Int?
     var delegate: FoodCellDelegate?
+    var addButtonHandler: (() -> Void)?
     
     
     @IBAction func favButtonTapped(_ sender: UIButton) {
@@ -36,7 +37,7 @@ class FoodCell: UICollectionViewCell {
     
     
     @IBAction func addButtonTapped(_ sender: UIButton) {
-       
+        addButtonHandler?()
     }
     
     private func updateFavButton() {

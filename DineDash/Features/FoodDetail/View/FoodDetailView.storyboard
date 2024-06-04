@@ -196,6 +196,7 @@
                         <outlet property="detailNameLabel" destination="QPf-dq-AMe" id="BOg-h7-lTA"/>
                         <outlet property="detailPriceLabel" destination="C9Q-6K-5Dz" id="cpv-Vk-eYL"/>
                         <outlet property="detailTotalPriceLabel" destination="zmG-KG-IHM" id="jPn-5D-PnI"/>
+                        <outlet property="favButton" destination="xKA-kJ-KbV" id="OtV-Wx-gNg"/>
                         <outlet property="orderCountLabel" destination="eC7-rn-0Zl" id="QJJ-12-TbZ"/>
                         <outlet property="stepper" destination="52l-3q-Rrk" id="x1S-kb-A4A"/>
                     </connections>

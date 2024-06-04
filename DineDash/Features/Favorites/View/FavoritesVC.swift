@@ -92,7 +92,7 @@ extension FavoritesVC: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FavoriteCell") as? FavoriteCell else { return UITableViewCell() }
         let food = favoriteFoods[indexPath.row]
         cell.foodNameLabel.text = food.name
-        cell.foodPriceLabel.text = food.price
+        cell.foodPriceLabel.text = (food.price ?? "") + " ₺"
         if let imageData = food.image {
             cell.foodImageView.image = UIImage(data: imageData)
         }

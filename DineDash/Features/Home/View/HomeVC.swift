@@ -112,7 +112,7 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.productImgView.image = viewModel.foodImages[food.yemekId]
         cell.nameLabel.text =  food.yemekAdi
-        cell.priceLabel.text = food.yemekFiyat
+        cell.priceLabel.text = food.yemekFiyat + " ₺"
         
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.3
@@ -122,6 +122,16 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.delegate = self
         cell.isFavorite = FavoritesFoodManager.shared.isFavorite(foodId: Int32(food.yemekId) ?? 0)
         cell.foodId = Int(food.yemekId)
+        
+        cell.addButtonHandler = { [weak self] in
+            let storyboard = UIStoryboard(name: "FoodDetailView", bundle: nil)
+            if let detailVC = storyboard.instantiateViewController(identifier: "FoodDetailVC") as? FoodDetailVC {
+                detailVC.hidesBottomBarWhenPushed = true
+                detailVC.selectedFood = self?.viewModel.filteredFoods?[indexPath.item]
+                self?.navigationController?.pushViewController(detailVC, animated: true)
+                
+            }
+        }
         
         return cell
     }
