@@ -103,6 +103,7 @@
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="182" height="268"/>
                                         <connections>
+                                            <outlet property="favButton" destination="WDQ-kh-7fG" id="o1w-lM-ppI"/>
                                             <outlet property="nameLabel" destination="jpx-69-BA8" id="5Xl-ag-GH8"/>
                                             <outlet property="priceLabel" destination="IbJ-9c-9q4" id="F5G-if-MC1"/>
                                             <outlet property="productImgView" destination="bdw-DA-URI" id="Zca-Tz-LGI"/>

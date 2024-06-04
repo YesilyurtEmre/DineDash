@@ -17,6 +17,7 @@ struct Food: Decodable {
     let yemekAdi: String
     let yemekResimAdi: String
     let yemekFiyat: String
+    var isFavorite: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case yemekId = "yemek_id"

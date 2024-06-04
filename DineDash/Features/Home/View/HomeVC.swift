@@ -14,6 +14,7 @@ final class HomeVC: BaseVC {
     @IBOutlet weak var searchBar: UISearchBar!
     
     private var viewModel = HomeViewModel()
+    private var favoriteFoodListViewModel = FavoriteFoodListViewModel()
   
     
     override func viewDidLoad() {
@@ -85,13 +86,14 @@ extension HomeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         cell.productImgView.image = viewModel.foodImages[food.yemekId]
         cell.nameLabel.text =  food.yemekAdi
-        cell.priceLabel.text = "\(food.yemekFiyat) ₺"
+        cell.priceLabel.text = food.yemekFiyat
         
         cell.layer.borderColor = UIColor.lightGray.cgColor
         cell.layer.borderWidth = 0.3
         cell.layer.cornerRadius = 10
         
         cell.indexPath = indexPath
+        cell.foodId = Int(food.yemekId)
         
         return cell
     }

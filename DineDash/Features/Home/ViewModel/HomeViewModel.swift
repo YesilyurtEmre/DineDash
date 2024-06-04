@@ -11,6 +11,8 @@ import AlamofireImage
 
 protocol HomeViewModelProtocol {
     var delegate: HomeViewModelDelegate? {get set}
+    func saveFood(food: FavoriteFoods, completion: @escaping (Bool, String?) -> ())
+    func foodIsFavorite(index: Int) -> Bool
 }
 
 protocol HomeViewModelDelegate: AnyObject {
@@ -18,11 +20,11 @@ protocol HomeViewModelDelegate: AnyObject {
     func foodsFailed(error: Error)
 }
 
-final class HomeViewModel {
+final class HomeViewModel: HomeViewModelProtocol {
     weak var delegate: HomeViewModelDelegate?
     private var foods: [Food]? = MockData.foods
-     var filteredFoods: [Food]?
-     var foodImages: [String: UIImage] = [:]
+    var filteredFoods: [Food]?
+    var foodImages: [String: UIImage] = [:]
     
     init() {
         fetchFoods()
@@ -69,6 +71,18 @@ final class HomeViewModel {
         }
     }
     
+    func saveFood(food: FavoriteFoods, completion: @escaping (Bool, String?) -> ()) {
+        FavoritesFoodManager.shared.saveData(data: food) { [weak self] isSuccess, saveError in
+            guard let self = self else { return }
+            if isSuccess {
+                self.delegate?.foodsLoaded()
+                completion(true, nil)
+            } else {
+                completion(false, saveError.rawValue)
+            }
+        }
+    }
+    
     func getProductCount() -> Int {
         filteredFoods?.count ?? 0
     }
@@ -89,5 +103,9 @@ final class HomeViewModel {
                 }
             }
         }
+    }
+    
+    func foodIsFavorite(index: Int) -> Bool {
+        filteredFoods?[index].isFavorite ?? false
     }
 }

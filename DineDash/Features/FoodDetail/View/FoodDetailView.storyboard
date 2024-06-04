@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="84" translatesAutoresizingMaskIntoConstraints="NO" id="IkZ-vO-5U3">
-                                <rect key="frame" x="20" y="80" width="374" height="34"/>
+                                <rect key="frame" x="20" y="124" width="374" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p3R-u0-Gek">
                                         <rect key="frame" x="0.0" y="0.0" width="43.5" height="34"/>
@@ -47,7 +47,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="O7x-n7-H32">
-                                <rect key="frame" x="72" y="194" width="270" height="228"/>
+                                <rect key="frame" x="72" y="238" width="270" height="184"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="8"/>
@@ -184,6 +184,7 @@
                             <constraint firstAttribute="trailing" secondItem="t7a-EL-RDz" secondAttribute="trailing" constant="8" id="vR8-Ki-rnK"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="odj-Pq-jXi"/>
                     <connections>
                         <outlet property="detailImageView" destination="O7x-n7-H32" id="QD4-Gr-N1l"/>
                         <outlet property="detailNameLabel" destination="QPf-dq-AMe" id="BOg-h7-lTA"/>
@@ -195,7 +196,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="393" y="-7"/>
+            <point key="canvasLocation" x="1302.8985507246377" y="-7.3660714285714279"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="n9o-2l-wgw">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lgk-fj-ryo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uOX-pi-lPC">
+                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Y6W-OH-hqX" kind="relationship" relationship="rootViewController" id="CgB-gX-w3I"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rFp-ml-JKP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="392.75362318840581" y="-7.3660714285714279"/>
         </scene>
     </scenes>
     <resources>
